@@ -61,7 +61,7 @@ main {
 /* Number line styling */
 .number-line {
     position: relative;
-    width: 100%;
+    width: 200px;
     height: 6px;
     background-color: #ddd;
     border-radius: 3px;
