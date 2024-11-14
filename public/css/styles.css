@@ -48,10 +48,6 @@ nav a {
     transition: color 0.3s ease;
 }
 
-nav a:first-child {
-    color: #d9534f; /* Hot bets in red */
-}
-
 nav a:hover {
     color: #007acc;
 }
@@ -83,8 +79,4 @@ main {
     font-size: 0.9em;
     transform: translateX(-50%);
     transition: background-color 0.3s ease;
-}
-
-#marker:hover {
-    background-color: #005a99;
 }
