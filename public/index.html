@@ -24,56 +24,67 @@
             { name: "Bet 2", number: 3, cost: 200, id: "line2" },
             { name: "Bet 3", number: 7, cost: 50, id: "line3" }
         ];
-
+        
         function setMarkerPosition(value, marker, min = 0, max = 10) {
             // Clamp the value within the min-max range
             value = Math.max(min, Math.min(value, max));
-
+        
             // Calculate the position as a percentage
             const percentage = ((value - min) / (max - min)) * 100;
-
+        
             // Set the marker position
             marker.style.left = `${percentage}%`;
         }
-
+        
         function createNumberLines(data) {
             const mainContent = document.getElementById('main-content');
             
             data.forEach(item => {
                 // Create a container for the number line and details
                 const container = document.createElement('div');
-
+        
                 // Add details above the number line
                 const details = document.createElement('div');
                 details.classList.add('line-details');
                 details.innerHTML = `<strong>${item.name}</strong> - $${item.cost}`;
                 container.appendChild(details);
-
+        
                 // Create the number line
                 const numberLine = document.createElement('div');
                 numberLine.classList.add('number-line');
                 numberLine.id = `number-line-${item.id}`;
-
+        
                 // Create the marker
                 const marker = document.createElement('div');
                 marker.classList.add('marker');
                 marker.id = `marker-${item.id}`;
                 marker.textContent = item.number;
-
+        
                 // Set the marker position based on value
                 setMarkerPosition(item.number, marker);
-
-                // Append marker to number line
+        
+                // Create a slider to adjust the marker
+                const slider = document.createElement('input');
+                slider.type = 'range';
+                slider.min = 0;
+                slider.max = 10;
+                slider.value = item.number;
+                slider.addEventListener('input', () => {
+                    setMarkerPosition(slider.value, marker);
+                });
+        
+                // Append marker and slider to number line
                 numberLine.appendChild(marker);
-
-                // Append number line to container
+        
+                // Append elements to container
                 container.appendChild(numberLine);
-
+                container.appendChild(slider);
+        
                 // Append container to main content
                 mainContent.appendChild(container);
             });
         }
-
+        
         // Generate number lines based on the data array
         createNumberLines(data);
     </script>
